@@ -1,0 +1,25 @@
+{
+  "name": "zlep",
+  "version": "1.0.0",
+  "description": "A website which supports classroom features",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushantbasak/Zlep.git"
+  },
+  "keywords": [],
+  "author": "Sushant <sushantbasak73@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sushantbasak/Zlep/issues"
+  },
+  "homepage": "https://github.com/sushantbasak/Zlep#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
