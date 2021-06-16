@@ -1,0 +1,14 @@
+GET http://localhost:3000
+###
+POST http://localhost:3000/api/register
+content-type: application/json
+
+{
+    "name": "Sushant Bs sdfsdfsdfsdfsdfssdssdfsdfsfds ",
+    "email" : "kevindmsardddtin2428@gmail.com",
+    "password" : "sfafdfafaf",
+    "age": 21,
+    "height" : 5
+}
+###
+GET http://localhost:3000/api/upload/allupload
