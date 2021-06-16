@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
       [name, email, password]
     );
 
-    if (!users) throw new Error();
+    if (users.rows.length === 0) throw new Error();
 
     res.send(users.rows);
   } catch (e) {
@@ -21,9 +21,10 @@ const getUser = async (req, res) => {
   try {
     const users = await pool.query('select * from users');
 
-    if (!users) throw new Error();
+    if (users.rows.length === 0)
+      return res.send('Not a single user registered');
 
-    res.send(users.rows);
+    res.send(users.rows.length);
   } catch (e) {
     return res.status(400).send('Error Found');
   }

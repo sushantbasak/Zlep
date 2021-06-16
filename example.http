@@ -11,4 +11,4 @@ content-type: application/json
     "height" : 5
 }
 ###
-GET http://localhost:3000/api/alluser
+GET http://localhost:3000/api/upload/allupload

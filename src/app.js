@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userRoute = require('./routes/userRoute');
+const uploadRoute = require('./routes/uploadRoute');
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,7 +16,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // API endpoints
-app.use('/api', userRoute);
+app.use('/api/user', userRoute);
+app.use('/api/upload', uploadRoute);
 
 app.listen(3000, () =>
   console.log('Server started successfully on port ' + PORT)
