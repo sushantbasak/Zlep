@@ -19,6 +19,6 @@ app.get('/api/health', (req, res) => {
 app.use('/api/user', userRoute);
 app.use('/api/upload', uploadRoute);
 
-app.listen(3000, () =>
+app.listen(PORT, () =>
   console.log('Server started successfully on port ' + PORT)
 );

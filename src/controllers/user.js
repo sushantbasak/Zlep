@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
 
     res.send(users.rows);
   } catch (e) {
-    return res.status(400).send('Error Found');
+    return res.status(400).send('Error Found', e);
   }
 };
 
@@ -26,7 +26,7 @@ const getUser = async (req, res) => {
 
     res.send(users.rows.length);
   } catch (e) {
-    return res.status(400).send('Error Found');
+    return res.status(400).send('Error Found', e);
   }
 };
 
