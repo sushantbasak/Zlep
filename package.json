@@ -16,8 +16,7 @@
   },
   "lint-staged": {
     "src/**/*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "repository": {
@@ -43,7 +42,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^6.0.0",
+    "husky": "^4.3.8",
     "lint-staged": "^11.0.0",
     "prettier": "2.3.1"
   },
