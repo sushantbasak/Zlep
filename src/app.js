@@ -1,5 +1,7 @@
 const express = require('express');
+
 const app = express();
+
 const userRoute = require('./routes/userRoute');
 const uploadRoute = require('./routes/uploadRoute');
 
@@ -15,10 +17,13 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'UP' });
 });
 
+app.get();
+
 // API endpoints
 app.use('/api/user', userRoute);
 app.use('/api/upload', uploadRoute);
 
 app.listen(PORT, () =>
-  console.log('Server started successfully on port ' + PORT)
+  // eslint-disable-next-line no-console
+  console.log(`Server started successfully on port ${PORT}`)
 );

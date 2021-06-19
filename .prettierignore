@@ -1,2 +1,4 @@
 node_modules/**
 .github/
+# Ignore all JS files:
+**/*.js

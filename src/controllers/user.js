@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
 
     if (users.rows.length === 0) throw new Error();
 
-    res.send(users.rows);
+    return res.send(users.rows);
   } catch (e) {
     return res.status(400).send('Error Found', e);
   }
@@ -24,7 +24,7 @@ const getUser = async (req, res) => {
     if (users.rows.length === 0)
       return res.send('Not a single user registered');
 
-    res.send(users.rows.length);
+    return res.send(users.rows.length);
   } catch (e) {
     return res.status(400).send('Error Found', e);
   }
