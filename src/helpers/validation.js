@@ -2,7 +2,9 @@ const validatePassword = (password) => {
   if (password.length <= 5 || password === '') {
     return false;
   }
-  return true;
+  const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+  return re.test(password);
 };
 
 const isEmpty = (input) => {

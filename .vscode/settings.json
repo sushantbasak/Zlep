@@ -1,0 +1,13 @@
+{
+  "editor.minimap.enabled": false,
+  "workbench.colorCustomizations": {
+    "[Default Dark+]": {
+      "editor.background": "#19191f"
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "[Default Dark+]": {
+      "comments": "#5F6167"
+    }
+  }
+}
