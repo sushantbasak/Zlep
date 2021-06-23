@@ -1,5 +1,7 @@
 const pool = require('../db/pool');
 
+const { generateAuthToken } = require('../helpers/auth');
+
 const createUser = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -12,21 +14,41 @@ const createUser = async (req, res) => {
 
     if (users.rows.length === 0) throw new Error();
 
-    return res.send(users.rows);
+    return res.send(users.rows[0]);
   } catch (e) {
     return res.status(400).send('Error Found', e);
   }
 };
 
-const getUser = async (req, res) => {
+const loginUser = async (req, res) => {
   try {
-    const users = await pool.query('select * from users');
-    if (users.rows.length === 0) return res.send('Not a single user registered');
+    const user = await pool.query('select * from users where email = $1', [req.body.email]);
 
-    return res.send(users.rows);
+    if (user.rows.length === 0) throw new Error();
+
+    const token = await generateAuthToken(user.rows[0]);
+
+    await pool.query('insert into tokens(user_id,token) values($1,$2)', [user.rows[0].user_id, token]);
+
+    return res.json({ data: user.rows[0], token });
   } catch (e) {
-    return res.status(400).send('Error Found', e);
+    return res.send('Error Found', e);
   }
 };
 
-module.exports = { createUser, getUser };
+const userProfile = async (req, res) => {
+  res.send({ user: req.user, token: req.token });
+};
+
+// const getUser = async (req, res) => {
+//   try {
+//     const users = await pool.query('select * from users');
+//     if (users.rows.length === 0) return res.send('Not a single user registered');
+
+//     return res.send(users.rows);
+//   } catch (e) {
+//     return res.status(400).send('Error Found', e);
+//   }
+// };
+
+module.exports = { createUser, loginUser, userProfile };

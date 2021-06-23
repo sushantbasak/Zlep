@@ -9,4 +9,13 @@ content-type: application/json
     "password" : "s15dD@/.ssS"
 }
 ###
-GET http://localhost:3000/api/user/alluser
+GET http://localhost:3000/api/user/login
+content-type: application/json
+
+{
+    "email" : "ke8@gail.com",
+    "password" : "s15dD@/.ssS"
+}
+###
+GET http://localhost:3000/api/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImRhdGUiOiIyMDIxLTA2LTIzVDE3OjMzOjI5LjEwOFoiLCJpYXQiOjE2MjQ0Njk2MDl9.YQgki6MsGz7ADeVI-OUyQeqQJE4AecGywukGibRIJwo
