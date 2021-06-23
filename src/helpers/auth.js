@@ -19,12 +19,7 @@ const auth = async (req, res, next) => {
 
     req.token = token;
 
-    const user = await pool.query('select * from users where user_id = $1', [finduser.rows[0].user_id]);
-
-    if (!user.rows.length) throw new Error();
-
-    // eslint-disable-next-line prefer-destructuring
-    req.user = user.rows[0];
+    req.finduser = finduser;
 
     next();
   } catch (e) {

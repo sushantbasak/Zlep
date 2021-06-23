@@ -37,7 +37,21 @@ const loginUser = async (req, res) => {
 };
 
 const userProfile = async (req, res) => {
-  res.send({ user: req.user, token: req.token });
+  try {
+    const user = await pool.query('select * from users where user_id = $1', [req.finduser.rows[0].user_id]);
+
+    if (!user.rows.length) throw new Error();
+
+    delete user.rows[0].password;
+
+    res.send({ user: user.rows[0], token: req.token });
+  } catch (e) {
+    res.send('User not registered', e);
+  }
+};
+
+const logoutUser = (req, res) => {
+  res.send('Hello');
 };
 
 // const getUser = async (req, res) => {
@@ -51,4 +65,4 @@ const userProfile = async (req, res) => {
 //   }
 // };
 
-module.exports = { createUser, loginUser, userProfile };
+module.exports = { createUser, loginUser, userProfile, logoutUser };
