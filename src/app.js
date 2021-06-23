@@ -17,11 +17,13 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'UP' });
 });
 
-app.get();
-
 // API endpoints
 app.use('/api/user', userRoute);
 app.use('/api/upload', uploadRoute);
+
+app.get('*', (req, res) => {
+  res.send('404 reached');
+});
 
 app.listen(PORT, () =>
   // eslint-disable-next-line no-console
