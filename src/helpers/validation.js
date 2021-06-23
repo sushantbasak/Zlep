@@ -2,18 +2,18 @@ const validatePassword = (password) => {
   if (password.length <= 5 || password === '') {
     return false;
   }
-  const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  const re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
 
   return re.test(password);
 };
 
-const isEmpty = (input) => {
-  if (input === undefined || input === '') return true;
+const isNotEmpty = (input) => {
+  if (input === undefined || input === '') return false;
   if (input.replace(/\s/g, '').length) {
     // globally searching for all types of unicode whitespaces and removing them and if after removing the length is still not 0 then there must be something other than spaces.
-    return false;
+    return true;
   }
-  return true;
+  return false;
 };
 
 function validateEmail(email) {
@@ -27,4 +27,23 @@ const empty = (input) => {
   return false;
 };
 
-module.exports = { validateEmail, validatePassword, isEmpty, empty };
+const validUser = (req, res, next) => {
+  const data = req.body;
+
+  let p = Boolean(true);
+
+  // eslint-disable-next-line consistent-return
+  Object.entries(data).forEach(([key, value]) => {
+    p = p && isNotEmpty(value);
+
+    if (key === 'email') p = p && validateEmail(value);
+
+    if (key === 'password') p = p && validatePassword(value);
+
+    if (p === false) return res.send({ msg: 'Invalid Input data', key });
+  });
+
+  next();
+};
+
+module.exports = { validateEmail, validatePassword, isNotEmpty, empty, validUser };
