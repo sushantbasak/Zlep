@@ -19,3 +19,7 @@ content-type: application/json
 ###
 POST http://localhost:3000/api/user/logoutall
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImRhdGUiOiIyMDIxLTA2LTI0VDE0OjI3OjMwLjQ1MloiLCJpYXQiOjE2MjQ1NDQ4NTB9.tZRNcWC_Gg4sp-fw96a5yDTcRgDWxCga9NNZ1LgK9Ww
+
+###
+GET http://localhost:3000/api/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImRhdGUiOiIyMDIxLTA2LTIzVDE3OjMzOjI5LjEwOFoiLCJpYXQiOjE2MjQ0Njk2MDl9.YQgki6MsGz7ADeVI-OUyQeqQJE4AecGywukGibRIJwo
