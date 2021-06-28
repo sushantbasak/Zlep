@@ -1,5 +1,8 @@
 GET http://localhost:3000
 ###
+GET http://localhost:3000/api/upload/allupload
+
+###
 POST http://localhost:3000/api/user/register
 content-type: application/json
 
@@ -17,5 +20,5 @@ content-type: application/json
     "password" : "s15dD@/.ssS"
 }
 ###
-DELETE  http://localhost:3000/api/user/delete
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImRhdGUiOiIyMDIxLTA2LTI4VDEzOjA1OjMxLjUwOVoiLCJpYXQiOjE2MjQ4ODU1MzF9.paBMyhIWktO1syXjwv7depWrCunmYw2rgiJbZEGqDME
+DELETE  http://localhost:3000/api/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImRhdGUiOiIyMDIxLTA2LTI4VDE0OjAzOjM5LjM0N1oiLCJpYXQiOjE2MjQ4ODkwMTl9.z_h0jlD37H6TaGIAwwKS1GF50fx5mZjjeIr_17eonDQ

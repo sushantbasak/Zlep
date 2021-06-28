@@ -45,15 +45,25 @@ const deleteUser = async (req, res) => {
     .catch((e) => res.status(400).send('Error Found', e));
 };
 
-const updateUser = async (req, res) => {
-  res.send('Update route reached');
+const updateUser = (req, res) => {
+  const updates = Object.keys(req.body);
+
+  const allowedUpdates = ['name', 'age', 'email', 'password'];
+
+  const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+
+  if (!isValidOperation) {
+    return res.status(400).send({ error: 'Invalid Update operation' });
+  }
+
+  res.send(req.user);
 };
 
 const loginUser = async (req, res) => {
   try {
     const user = await pool.query('select * from users where email = $1', [req.body.email]);
 
-    if (user.rows.length === 0) throw new Error();
+    if (user.rows.length === 0) throw new Error('Error Found');
 
     const token = await generateAuthToken(user.rows[0]);
 
@@ -61,7 +71,11 @@ const loginUser = async (req, res) => {
 
     return res.json({ data: user.rows[0], token });
   } catch (e) {
-    return res.send('Error Found', e);
+    console.log(e);
+
+    const err = JSON.stringify(e, Object.getOwnPropertyNames(e));
+
+    res.status(400).send({ msg: 'Error Found', Error: err });
   }
 };
 
@@ -69,11 +83,11 @@ const logoutUser = async (req, res) => {
   pool
     .query('delete from tokens where token = $1 returning *;', [req.token])
     .then((user) => {
-      if (!user.rows.length) throw new Error();
+      if (!user.rows.length) throw new Error('Error Found');
 
       res.send({ msg: 'Successful Delete Operation', user: user.rows[0] });
     })
-    .catch((e) => res.send('Error Found', e));
+    .catch(() => res.status(400).send('Error Found'));
 };
 
 const logoutAllUser = async (req, res) => {
