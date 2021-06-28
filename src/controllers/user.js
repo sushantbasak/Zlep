@@ -45,10 +45,10 @@ const deleteUser = async (req, res) => {
     .catch((e) => res.status(400).send('Error Found', e));
 };
 
-const updateUser = (req, res) => {
+const updateUser = async (req, res) => {
   const updates = Object.keys(req.body);
 
-  const allowedUpdates = ['name', 'age', 'email', 'password'];
+  const allowedUpdates = ['name', 'email', 'password'];
 
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
@@ -56,7 +56,20 @@ const updateUser = (req, res) => {
     return res.status(400).send({ error: 'Invalid Update operation' });
   }
 
-  res.send(req.user);
+  const updateQuery = ` UPDATE users 
+  SET name=$1, email=$2, password=$3 
+  WHERE email = $2 
+  returning *;`;
+
+  try {
+    const user = await pool.query(updateQuery, [req.user.name, req.user.email, req.user.password]);
+
+    if (user.rows.length === 0) throw new Error();
+
+    return res.send(user.rows[0]);
+  } catch (e) {
+    return res.send('Unable to update');
+  }
 };
 
 const loginUser = async (req, res) => {

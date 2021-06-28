@@ -20,7 +20,7 @@ router.get('/me', auth, userProfile);
 
 router.delete('/me', auth, deleteUser);
 
-router.patch('/me', auth, updateUser);
+router.patch('/me', validUser, auth, updateUser);
 
 router.get('/login', validUser, loginUser);
 
