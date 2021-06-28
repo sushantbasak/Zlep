@@ -20,6 +20,35 @@ const createUser = async (req, res) => {
   }
 };
 
+const userProfile = async (req, res) => {
+  try {
+    const user = await pool.query('select * from users where user_id = $1', [req.finduser.user_id]);
+
+    if (!user.rows.length) throw new Error();
+
+    delete user.rows[0].password;
+
+    res.send({ user: user.rows[0], token: req.token });
+  } catch (e) {
+    res.send('User not registered', e);
+  }
+};
+
+const deleteUser = async (req, res) => {
+  pool
+    .query('delete from users where user_id = $1 returning *;', [req.finduser.user_id])
+    .then((user) => {
+      if (!user.rows.length) throw new Error();
+
+      res.send({ msg: 'User deleted successfully', user: user.rows[0] });
+    })
+    .catch((e) => res.status(400).send('Error Found', e));
+};
+
+const updateUser = async (req, res) => {
+  res.send('Update route reached');
+};
+
 const loginUser = async (req, res) => {
   try {
     const user = await pool.query('select * from users where email = $1', [req.body.email]);
@@ -33,20 +62,6 @@ const loginUser = async (req, res) => {
     return res.json({ data: user.rows[0], token });
   } catch (e) {
     return res.send('Error Found', e);
-  }
-};
-
-const userProfile = async (req, res) => {
-  try {
-    const user = await pool.query('select * from users where user_id = $1', [req.finduser.user_id]);
-
-    if (!user.rows.length) throw new Error();
-
-    delete user.rows[0].password;
-
-    res.send({ user: user.rows[0], token: req.token });
-  } catch (e) {
-    res.send('User not registered', e);
   }
 };
 
@@ -72,15 +87,4 @@ const logoutAllUser = async (req, res) => {
     .catch((e) => res.status(400).send('Error Found', e));
 };
 
-const deleteUser = async (req, res) => {
-  pool
-    .query('delete from users where user_id = $1 returning *;', [req.finduser.user_id])
-    .then((user) => {
-      if (!user.rows.length) throw new Error();
-
-      res.send({ msg: 'User deleted successfully', user: user.rows[0] });
-    })
-    .catch((e) => res.status(400).send('Error Found', e));
-};
-
-module.exports = { createUser, loginUser, userProfile, logoutUser, logoutAllUser, deleteUser };
+module.exports = { createUser, deleteUser, updateUser, loginUser, userProfile, logoutUser, logoutAllUser };
