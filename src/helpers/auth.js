@@ -19,7 +19,8 @@ const auth = async (req, res, next) => {
 
     req.token = token;
 
-    req.finduser = finduser;
+    // eslint-disable-next-line prefer-destructuring
+    req.finduser = finduser.rows[0];
 
     next();
   } catch (e) {

@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
 
 const userProfile = async (req, res) => {
   try {
-    const user = await pool.query('select * from users where user_id = $1', [req.finduser.rows[0].user_id]);
+    const user = await pool.query('select * from users where user_id = $1', [req.finduser.user_id]);
 
     if (!user.rows.length) throw new Error();
 
@@ -50,8 +50,36 @@ const userProfile = async (req, res) => {
   }
 };
 
-const logoutUser = (req, res) => {
-  res.send('Hello');
+const logoutUser = async (req, res) => {
+  pool
+    .query('delete from tokens where token = $1 returning *;', [req.token])
+    .then((user) => {
+      if (!user.rows.length) throw new Error();
+
+      res.send({ msg: 'Successful Delete Operation', user: user.rows[0] });
+    })
+    .catch((e) => res.send('Error Found', e));
+};
+
+const logoutAllUser = async (req, res) => {
+  pool
+    .query('delete from tokens where user_id = $1 returning *;', [req.finduser.user_id])
+    .then((user) => {
+      if (!user.rows.length) throw new Error();
+      // let token;
+      // Object.entries(user.rows).forEach((data) => {
+      //   console.log(data);
+      //   token.concat(data.token);
+      // });
+      // for (let i = 0; i < user.rows.length; i += 1) {
+      //   token.concat(user.rows[i].token);
+      //   // token += user.rows[i].token;
+      //   console.log(user.rows[i].user_id);
+      // }
+      // console.log('Hello');
+      res.send({ msg: 'Successful Delete Operation', tokens: user.rows });
+    })
+    .catch((e) => res.status(400).send('Error Found', e));
 };
 
 // const getUser = async (req, res) => {
@@ -65,4 +93,4 @@ const logoutUser = (req, res) => {
 //   }
 // };
 
-module.exports = { createUser, loginUser, userProfile, logoutUser };
+module.exports = { createUser, loginUser, userProfile, logoutUser, logoutAllUser };
