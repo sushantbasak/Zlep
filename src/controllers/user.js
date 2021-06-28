@@ -66,31 +66,21 @@ const logoutAllUser = async (req, res) => {
     .query('delete from tokens where user_id = $1 returning *;', [req.finduser.user_id])
     .then((user) => {
       if (!user.rows.length) throw new Error();
-      // let token;
-      // Object.entries(user.rows).forEach((data) => {
-      //   console.log(data);
-      //   token.concat(data.token);
-      // });
-      // for (let i = 0; i < user.rows.length; i += 1) {
-      //   token.concat(user.rows[i].token);
-      //   // token += user.rows[i].token;
-      //   console.log(user.rows[i].user_id);
-      // }
-      // console.log('Hello');
-      res.send({ msg: 'Successful Delete Operation', tokens: user.rows });
+
+      res.send({ msg: 'Successful Delete Operation' });
     })
     .catch((e) => res.status(400).send('Error Found', e));
 };
 
-// const getUser = async (req, res) => {
-//   try {
-//     const users = await pool.query('select * from users');
-//     if (users.rows.length === 0) return res.send('Not a single user registered');
+const deleteUser = async (req, res) => {
+  pool
+    .query('delete from users where user_id = $1 returning *;', [req.finduser.user_id])
+    .then((user) => {
+      if (!user.rows.length) throw new Error();
 
-//     return res.send(users.rows);
-//   } catch (e) {
-//     return res.status(400).send('Error Found', e);
-//   }
-// };
+      res.send({ msg: 'User deleted successfully', user: user.rows[0] });
+    })
+    .catch((e) => res.status(400).send('Error Found', e));
+};
 
-module.exports = { createUser, loginUser, userProfile, logoutUser, logoutAllUser };
+module.exports = { createUser, loginUser, userProfile, logoutUser, logoutAllUser, deleteUser };

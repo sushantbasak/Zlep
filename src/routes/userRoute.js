@@ -4,7 +4,7 @@ const { auth } = require('../helpers/auth');
 
 const router = express.Router();
 
-const { createUser, loginUser, userProfile, logoutUser, logoutAllUser } = require('../controllers/user');
+const { createUser, loginUser, userProfile, logoutUser, logoutAllUser, deleteUser } = require('../controllers/user');
 
 router.post('/register', validUser, createUser);
 
@@ -15,5 +15,7 @@ router.get('/me', auth, userProfile);
 router.post('/logout', auth, logoutUser);
 
 router.post('/logoutall', auth, logoutAllUser);
+
+router.delete('/delete', auth, deleteUser);
 
 module.exports = router;
