@@ -11,5 +11,6 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
+    'consistent-return': [0, { treatUndefinedAsUnspecified: true }],
   },
 };
