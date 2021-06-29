@@ -65,8 +65,6 @@ const updateUser = async (req, res) => {
   WHERE email = $2 
   returning *;`;
 
-  req.body.prop = 'Hello';
-
   try {
     const user = await pool.query(updateQuery, [req.user.name, req.user.email, req.user.password]);
 
@@ -90,8 +88,6 @@ const loginUser = async (req, res) => {
 
     return res.json({ data: user.rows[0], token });
   } catch (e) {
-    console.log(e);
-
     const err = JSON.stringify(e, Object.getOwnPropertyNames(e));
 
     res.status(400).send({ msg: 'Error Found', Error: err });

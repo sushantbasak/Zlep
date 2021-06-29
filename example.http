@@ -1,6 +1,23 @@
 GET http://localhost:3000
 ###
 GET http://localhost:3000/api/upload/allupload
+###
+POST http://localhost:3000/api/upload/me
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
+
+{
+    "projectName" : "Hello World",
+    "description" : "Create a new project"
+}
+###
+GET http://localhost:3000/api/user/login
+content-type: application/json
+
+{
+    "email" : "ke811e@gail.com",
+    "password" : "s15dD@/.ssS"
+}
 
 ###
 POST http://localhost:3000/api/user/register
@@ -21,14 +38,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiO
     "email" : "ke811e@gail.com",
     "password" : "s15dD@/.ssS"
 }
-###
-GET http://localhost:3000/api/user/login
-content-type: application/json
 
-{
-    "email" : "ke811e@gail.com",
-    "password" : "s15dD@/.ssS"
-}
 ###
-GET  http://localhost:3000/api/user/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI4VDE3OjQ4OjU5Ljc2NloiLCJpYXQiOjE2MjQ5MDI1Mzl9.tglvaFWfzH4qq3ITlDxV9AJQJV_7hnq9lK_pUhfO7PY
+DELETE   http://localhost:3000/api/upload/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjQzOjEyLjgwN1oiLCJpYXQiOjE2MjQ5Nzc3OTJ9.lHvWog2Typ-e2KJbbXaKdu5jWGFiBJEp6Mg_qJrsk5s
