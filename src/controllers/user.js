@@ -56,10 +56,16 @@ const updateUser = async (req, res) => {
     return res.status(400).send({ error: 'Invalid Update operation' });
   }
 
+  updates.forEach((data) => {
+    req.user[data] = req.body[data];
+  });
+
   const updateQuery = ` UPDATE users 
   SET name=$1, email=$2, password=$3 
   WHERE email = $2 
   returning *;`;
+
+  req.body.prop = 'Hello';
 
   try {
     const user = await pool.query(updateQuery, [req.user.name, req.user.email, req.user.password]);

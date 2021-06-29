@@ -13,11 +13,11 @@ content-type: application/json
 }
 ###
 PATCH  http://localhost:3000/api/user/me
+content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI4VDE3OjU2OjMwLjQ5M1oiLCJpYXQiOjE2MjQ5MDI5OTB9._5OH42c2Pu_vz5ctlRBhFWvWjBI7G_DQS-GRdkppKjw
 
-content-type: application/json
 {
-    "name": "SushanT",
+    "name": "Sushant",
     "email" : "ke811e@gail.com",
     "password" : "s15dD@/.ssS"
 }
