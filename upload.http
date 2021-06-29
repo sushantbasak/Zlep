@@ -11,35 +11,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiO
     "description" : "Create a new project"
 }
 ###
-GET http://localhost:3000/api/user/login
-content-type: application/json
-
-{
-    "email" : "ke811e@gail.com",
-    "password" : "s15dD@/.ssS"
-}
-
-###
-POST http://localhost:3000/api/user/register
-content-type: application/json
-
-{
-    "name": "Sushant Bfdsfs",
-    "email" : "ke811e@gail.com",
-    "password" : "s15dD@/.ssS"
-}
-###
-PATCH  http://localhost:3000/api/user/me
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI4VDE3OjU2OjMwLjQ5M1oiLCJpYXQiOjE2MjQ5MDI5OTB9._5OH42c2Pu_vz5ctlRBhFWvWjBI7G_DQS-GRdkppKjw
-
-{
-    "name": "Sushant",
-    "email" : "ke811e@gail.com",
-    "password" : "s15dD@/.ssS"
-}
-
-###
 PATCH  http://localhost:3000/api/upload/me/13d
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjQzOjEyLjgwN1oiLCJpYXQiOjE2MjQ5Nzc3OTJ9.lHvWog2Typ-e2KJbbXaKdu5jWGFiBJEp6Mg_qJrsk5s
