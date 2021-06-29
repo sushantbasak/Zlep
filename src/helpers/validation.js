@@ -46,4 +46,18 @@ const validUser = (req, res, next) => {
   next();
 };
 
-module.exports = { validateEmail, validatePassword, isNotEmpty, empty, validUser };
+const validUpload = (req, res, next) => {
+  const data = req.body;
+
+  let p = Boolean(true);
+
+  Object.entries(data).forEach(([key, value]) => {
+    p = p && isNotEmpty(value);
+
+    if (p === false) return res.send({ msg: 'Invalid Input data', key });
+  });
+
+  next();
+};
+
+module.exports = { validateEmail, validatePassword, isNotEmpty, empty, validUser, validUpload };

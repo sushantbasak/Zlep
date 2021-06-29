@@ -102,8 +102,6 @@ const updateUpload = async (req, res) => {
       req.body.description,
     ]);
 
-    console.log(upload);
-
     if (upload.rows.length === 0) throw new Error();
 
     res.send(upload.rows[0]);
