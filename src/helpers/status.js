@@ -1,4 +1,4 @@
-const successMessage = { status: 'success', data: {} };
+const successMessage = { status: 'success' };
 const errorMessage = { status: 'error' };
 const status = {
   success: 200,

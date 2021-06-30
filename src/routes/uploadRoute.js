@@ -1,9 +1,28 @@
 const express = require('express');
+const { auth } = require('../helpers/auth');
+const { validUpload } = require('../helpers/validation');
 
 const router = express.Router();
 
-const { getUpload } = require('../controllers/upload');
+const {
+  getUploadAll,
+  createUpload,
+  deleteUploadAll,
+  deleteUpload,
+  viewUpload,
+  updateUpload,
+} = require('../controllers/upload');
 
-router.get('/allupload', getUpload);
+router.get('/all', auth, getUploadAll);
+
+router.post('/me', auth, validUpload, createUpload);
+
+router.delete('/all', auth, deleteUploadAll);
+
+router.delete('/me/:id', auth, deleteUpload);
+
+router.get('/me/:id', auth, viewUpload);
+
+router.patch('/me/:id', auth, validUpload, updateUpload);
 
 module.exports = router;

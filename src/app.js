@@ -7,23 +7,24 @@ const uploadRoute = require('./routes/uploadRoute');
 
 const PORT = process.env.PORT || 3000;
 
+const end = (req, res) => {
+  res.status(404).send('Page Not Found');
+};
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Server is running!');
+  res.status(200).send('Server is running!');
 });
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'UP' });
+  res.status(200).send({ status: 'UP' });
 });
 
 // API endpoints
 app.use('/api/user', userRoute);
 app.use('/api/upload', uploadRoute);
-
-app.get('*', (req, res) => {
-  res.send('404 reached');
-});
+app.use(end);
 
 app.listen(PORT, () =>
   // eslint-disable-next-line no-console

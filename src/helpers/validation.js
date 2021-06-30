@@ -1,3 +1,5 @@
+const { status, errorMessage } = require('./status');
+
 const validatePassword = (password) => {
   if (password.length <= 5 || password === '') {
     return false;
@@ -40,10 +42,24 @@ const validUser = (req, res, next) => {
 
     if (key === 'password') p = p && validatePassword(value);
 
-    if (p === false) return res.send({ msg: 'Invalid Input data', key });
+    if (p === false) return res.status(status.bad).send({ ...errorMessage, msg: 'Invalid Input data' });
   });
 
   next();
 };
 
-module.exports = { validateEmail, validatePassword, isNotEmpty, empty, validUser };
+const validUpload = (req, res, next) => {
+  const data = req.body;
+
+  let p = Boolean(true);
+
+  Object.entries(data).forEach(([, value]) => {
+    p = p && isNotEmpty(value);
+
+    if (p === false) return res.status(status.bad).send({ ...errorMessage, msg: 'Invalid Input data' });
+  });
+
+  next();
+};
+
+module.exports = { validateEmail, validatePassword, isNotEmpty, empty, validUser, validUpload };

@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 const pool = require('../db/pool');
+const { status, errorMessage } = require('./status');
 
 const generateAuthToken = async (user) => {
-  const token = await jwt.sign({ id: user.user_id, date: new Date() }, 'process.env.JWT_SECRET');
+  const token = await jwt.sign({ id: user.user_id, date: new Date().getTime() }, 'process.env.JWT_SECRET');
 
   return token;
 };
@@ -15,12 +16,10 @@ const auth = async (req, res, next) => {
 
     const finduser = await pool.query('select * from tokens where user_id = $1 AND token = $2', [decoded.id, token]);
 
-    if (!finduser) throw new Error();
+    if (!finduser.rows.length === 0) throw new Error();
 
     req.token = token;
 
-    // eslint-disable-next-line prefer-destructuring
-    req.finduser = finduser.rows[0];
     const user = await pool.query('select * from users where user_id = $1', [finduser.rows[0].user_id]);
 
     if (!user.rows.length) throw new Error();
@@ -30,7 +29,7 @@ const auth = async (req, res, next) => {
 
     next();
   } catch (e) {
-    res.send({ msg: 'Please Authenticate', e });
+    res.status(status.unauthorized).send({ ...errorMessage, msg: 'Please Authenticate' });
   }
 };
 
