@@ -4,8 +4,8 @@ POST http://localhost:3000/api/user/register
 content-type: application/json
 
 {
-    "name": "Sushant Basask",
-    "email" : "kevsin@gail.com",
+    "name": "Sushant Basak",
+    "email" : "kevin@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###
@@ -20,8 +20,8 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDcsImRhdGUiOjE2MjQ5OTE0ODQ3NTksImlhdCI6MTYyNDk5MTQ4NH0.rc9_vrsepZC7B5KYkNK0lEmZ2xKAeizGELJrndNWiug
 
 {
-    "name": "SushanT Basask",
-    "email" : "kevsin@gail.com",
+    "name": "SushanT Basak",
+    "email" : "kevin@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###
@@ -29,7 +29,7 @@ GET http://localhost:3000/api/user/login
 content-type: application/json
 
 {
-    "email" : "kevsin@gail.com",
+    "email" : "kevin@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###

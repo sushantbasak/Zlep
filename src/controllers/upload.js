@@ -1,4 +1,5 @@
 const pool = require('../db/pool');
+const { errorMessage, successMessage, status } = require('../helpers/status');
 
 const createUpload = async (req, res) => {
   const { projectName, description } = req.body;
@@ -11,9 +12,9 @@ const createUpload = async (req, res) => {
 
     if (upload.rows.length === 0) throw new Error('Unable to Insert');
 
-    res.send(upload.rows[0]);
+    res.status(status.created).send({ ...successMessage, data: upload.rows[0] });
   } catch (e) {
-    res.send('Unable to upload');
+    res.status(status.bad).send({ ...errorMessage, msg: 'Unable to upload' });
   }
 };
 
@@ -23,9 +24,9 @@ const getUploadAll = async (req, res) => {
   try {
     const uploads = await pool.query(uploadQuery, [req.user.user_id]);
 
-    return res.send(uploads.rows);
+    return res.status(status.success).send({ ...successMessage, data: uploads.rows });
   } catch (e) {
-    return res.status(400).send('Error Found');
+    return res.status(400).send({ ...errorMessage, msg: 'Unable to get all Uploads' });
   }
 };
 
@@ -38,9 +39,9 @@ const deleteUploadAll = async (req, res) => {
 
     if (uploads.rows.length === 0) return res.send('No Uploads were Posted by User');
 
-    return res.send(uploads.rows);
+    return res.status(status.success).send({ ...successMessage, data: uploads.rows });
   } catch (e) {
-    return res.status(400).send('Error Found');
+    return res.status(status.bad).send({ ...errorMessage, msg: 'Unable to Delete All Uploads' });
   }
 };
 
@@ -52,9 +53,9 @@ const viewUpload = async (req, res) => {
 
     if (upload.rows.length === 0) throw new Error();
 
-    res.send(upload.rows[0]);
+    return res.status(status.success).send({ ...successMessage, data: upload.rows[0] });
   } catch (e) {
-    res.send('Unable to view Upload');
+    return res.status(status.bad).send({ ...errorMessage, msg: 'Unable to View Upload' });
   }
 };
 
@@ -67,9 +68,9 @@ const deleteUpload = async (req, res) => {
 
     if (upload.rows.length === 0) throw new Error();
 
-    res.send(upload.rows[0]);
+    return res.status(status.success).send({ ...successMessage, data: upload.rows[0] });
   } catch (e) {
-    res.send('Unable to Delete the Upload');
+    return res.status(status.bad).send({ ...errorMessage, msg: 'Unable to Delete Upload' });
   }
 };
 
@@ -81,7 +82,7 @@ const updateUpload = async (req, res) => {
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
   if (!isValidOperation) {
-    return res.status(400).send({ error: 'Invalid Update operation' });
+    return res.status(status.nocontent).send({ ...errorMessage, msg: 'Invalid Update operation' });
   }
 
   updates.forEach((data) => {
@@ -104,9 +105,9 @@ const updateUpload = async (req, res) => {
 
     if (upload.rows.length === 0) throw new Error();
 
-    res.send(upload.rows[0]);
+    return res.status(status.success).send({ ...successMessage, data: upload.rows[0] });
   } catch (e) {
-    res.send('Unable to Update the Upload');
+    return res.status(status.bad).send({ ...errorMessage, msg: 'Unable to Update Upload' });
   }
 };
 

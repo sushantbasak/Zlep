@@ -1,21 +1,31 @@
 GET http://localhost:3000
 ###
 GET http://localhost:3000/api/upload/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
 ###
 POST http://localhost:3000/api/upload/me
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
 
 {
-    "projectName" : "",
+    "projectName" : "Hello",
     "description" : "Create a new project"
 }
 ###
-PATCH  http://localhost:3000/api/upload/me/13d
+DELETE http://localhost:3000/api/upload/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
+###
+GET http://localhost:3000/api/upload/me/20
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
+###
+DELETE http://localhost:3000/api/upload/me/20
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
+###
+PATCH  http://localhost:3000/api/upload/me/20
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjQzOjEyLjgwN1oiLCJpYXQiOjE2MjQ5Nzc3OTJ9.lHvWog2Typ-e2KJbbXaKdu5jWGFiBJEp6Mg_qJrsk5s
 
 {
-    "projectName" : "Hello Wodfdrld",
+    "projectName" : "Hello World",
     "description" : "Create a new project"
 }
