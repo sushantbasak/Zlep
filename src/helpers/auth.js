@@ -30,8 +30,6 @@ const auth = async (req, res, next) => {
     // eslint-disable-next-line prefer-destructuring
     req.user = user.rows[0];
 
-    console.log(process.env.JWT_SECRET);
-
     next();
   } catch (e) {
     res.status(status.unauthorized).send({ ...errorMessage, msg: 'Please Authenticate' });

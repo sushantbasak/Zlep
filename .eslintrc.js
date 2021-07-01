@@ -18,5 +18,6 @@ module.exports = {
         devDependencies: true,
       },
     ],
+    'prefer-destructuring': ['error', { VariableDeclarator: { object: true } }],
   },
 };
