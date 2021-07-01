@@ -5,11 +5,12 @@ const app = express();
 
 const userRoute = require('./routes/userRoute');
 const uploadRoute = require('./routes/uploadRoute');
+const submitRoute = require('./routes/submitRoute');
 
 app.use(express.json());
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const { PORT } = process.env;
 
 const end = (req, res) => {
   res.status(404).send('Page Not Found');
@@ -26,6 +27,7 @@ app.get('/api/health', (req, res) => {
 // API endpoints
 app.use('/api/user', userRoute);
 app.use('/api/upload', uploadRoute);
+app.use('/api/submit', submitRoute);
 app.use(end);
 
 app.listen(PORT, () =>

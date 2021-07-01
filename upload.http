@@ -1,4 +1,4 @@
-GET http://localhost:3000
+GET http://localhost:3000/api/health
 ###
 GET http://localhost:3000/api/upload/all
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImRhdGUiOiIyMDIxLTA2LTI5VDE0OjI2OjIxLjA5OVoiLCJpYXQiOjE2MjQ5NzY3ODF9.IHoQQPLg2uw70zpCbykY-87Co40HXwY3xMHWBwTB9Y4
