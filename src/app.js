@@ -1,17 +1,19 @@
 const express = require('express');
+const dotenv = require('dotenv');
 
 const app = express();
 
 const userRoute = require('./routes/userRoute');
 const uploadRoute = require('./routes/uploadRoute');
 
+app.use(express.json());
+dotenv.config();
+
 const PORT = process.env.PORT || 3000;
 
 const end = (req, res) => {
   res.status(404).send('Page Not Found');
 };
-
-app.use(express.json());
 
 app.get('/', (req, res) => {
   res.status(200).send('Server is running!');
