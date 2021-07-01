@@ -12,5 +12,12 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
     'consistent-return': [0, { treatUndefinedAsUnspecified: true }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
+    'prefer-destructuring': ['error', { VariableDeclarator: { object: true } }],
   },
 };

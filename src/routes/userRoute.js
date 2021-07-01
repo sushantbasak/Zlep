@@ -1,6 +1,7 @@
 const express = require('express');
 const { validUser } = require('../helpers/validation');
 const { auth } = require('../helpers/auth');
+const { compareHash } = require('../helpers/hash');
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.delete('/me', auth, deleteUser);
 
 router.patch('/me', validUser, auth, updateUser);
 
-router.get('/login', validUser, loginUser);
+router.get('/login', validUser, compareHash, loginUser);
 
 router.post('/logout', auth, logoutUser);
 

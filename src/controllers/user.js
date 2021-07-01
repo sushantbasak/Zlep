@@ -2,19 +2,30 @@ const pool = require('../db/pool');
 
 const { generateAuthToken } = require('../helpers/auth');
 
+const { generateHash } = require('../helpers/hash');
+
 const { successMessage, errorMessage, status } = require('../helpers/status');
 
 const createUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    const findUser = await pool.query('select * from users where email=$1', [email]);
+
+    if (findUser.rows.length)
+      return res.status(status.conflict).send({ ...errorMessage, msg: 'User already Registered' });
+
+    const hashPassword = await generateHash(password);
+
     const users = await pool.query('insert into users(name,email,password) values($1,$2,$3) returning *;', [
       name,
       email,
-      password,
+      hashPassword,
     ]);
 
     if (users.rows.length === 0) throw new Error();
+
+    delete users.rows[0].password;
 
     return res.status(status.created).send({ ...successMessage, data: users.rows[0] });
   } catch (e) {
@@ -85,15 +96,11 @@ const updateUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const user = await pool.query('select * from users where email = $1', [req.body.email]);
+    const token = await generateAuthToken(req.user.user_id);
 
-    if (user.rows.length === 0) throw new Error();
+    await pool.query('insert into tokens(user_id,token) values($1,$2)', [req.user.user_id, token]);
 
-    const token = await generateAuthToken(user.rows[0]);
-
-    await pool.query('insert into tokens(user_id,token) values($1,$2)', [user.rows[0].user_id, token]);
-
-    return res.status(status.success).send({ ...successMessage, data: user.rows[0], token });
+    return res.status(status.success).send({ ...successMessage, data: req.user, token });
   } catch (e) {
     // const err = JSON.stringify(e, Object.getOwnPropertyNames(e));
     // Only console.log(err) works in this case if JSON stringify not used

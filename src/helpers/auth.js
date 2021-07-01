@@ -1,9 +1,12 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const pool = require('../db/pool');
 const { status, errorMessage } = require('./status');
 
+dotenv.config();
+
 const generateAuthToken = async (user) => {
-  const token = await jwt.sign({ id: user.user_id, date: new Date().getTime() }, 'process.env.JWT_SECRET');
+  const token = await jwt.sign({ id: user.user_id, date: new Date().getTime() }, process.env.JWT_SECRET);
 
   return token;
 };
@@ -12,7 +15,7 @@ const auth = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
 
-    const decoded = await jwt.verify(token, 'process.env.JWT_SECRET');
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
     const finduser = await pool.query('select * from tokens where user_id = $1 AND token = $2', [decoded.id, token]);
 
