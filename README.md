@@ -1,6 +1,8 @@
 # Zlep
 A website which supports classroom features
 
+![Linters](https://github.com/sushantbasak/Zlep/actions/workflows/lint.yml/badge.svg)
+
 ### Tech Stack
 * NodeJS
 * Express
