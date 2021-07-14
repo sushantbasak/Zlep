@@ -1,0 +1,4 @@
+GET http://localhost:3000/api/health
+###
+GET http://localhost:3000/api/upload/me/26/allsubmit
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImRhdGUiOjE2MjYyNjk5Nzc3NDMsImlhdCI6MTYyNjI2OTk3N30.ANpD2ipM5M-oup9cSiMQ-KnH0HS45eLzVl26e88EQb0

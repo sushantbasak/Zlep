@@ -4,8 +4,8 @@ POST http://localhost:3000/api/user/register
 content-type: application/json
 
 {
-    "name": "Sushant",
-    "email" : "sushasnt@gmail.com",
+    "name": "sushant",
+    "email" : "basak@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###
@@ -29,7 +29,7 @@ GET http://localhost:3000/api/user/login
 content-type: application/json
 
 {
-    "email" : "sushasnt@gmail.com",
+    "email" : "basak@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###

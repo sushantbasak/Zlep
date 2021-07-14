@@ -4,7 +4,7 @@ const { successMessage, errorMessage, status } = require('../helpers/status');
 // =========================== Submit -> User/Student/Interviewee  ===========================
 
 const getAllSubmit = async (req, res) => {
-  const { userId } = req.user;
+  const { user_id: userId } = req.user;
 
   const submitQuery = `
   select * from submits where user_id = $1`;
@@ -13,7 +13,7 @@ const getAllSubmit = async (req, res) => {
     const getAllSubmission = await pool.query(submitQuery, [userId]);
 
     if (getAllSubmission.rows.length === 0)
-      return res.status(status.nocontent).send({ ...successMessage, data: 'No Submissions found' });
+      return res.status(status.success).send({ ...successMessage, data: 'No Submissions found' });
 
     res.status(status.success).send({ ...successMessage, data: getAllSubmission.rows });
   } catch (e) {
@@ -29,8 +29,8 @@ const createSubmit = async (req, res) => {
   const { uploadId } = req.params;
 
   const insertQuery = `
-    insert into submits(upload_id,user_id,submission)
-    values ($1,$2,$3)
+    Insert into submits(upload_id,user_id,submission)
+    Values($1,$2,$3)
     returning *;`;
   const deleteQuery = `
     delete from submits where upload_id = $1 and user_id = $2
@@ -45,7 +45,7 @@ const createSubmit = async (req, res) => {
 
     return res.status(status.created).send({ ...successMessage, data: submit.rows[0] });
   } catch (e) {
-    return res.status(status.bad).send({ ...errorMessage, msg: 'Unable to Submit Assignment' });
+    return res.status(status.bad).send({ ...errorMessage, msg: 'Unable to Submit Assignment', e });
   }
 };
 

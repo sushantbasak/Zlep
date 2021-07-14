@@ -1,8 +1,10 @@
 GET http://localhost:3000/api/health
 ###
 GET http://localhost:3000/api/submit/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImRhdGUiOjE2MjYyNjk5Nzc3NDMsImlhdCI6MTYyNjI2OTk3N30.ANpD2ipM5M-oup9cSiMQ-KnH0HS45eLzVl26e88EQb0
 ### 
-POST http://localhost:3000/api/submit/me/22
+
+POST http://localhost:3000/api/submit/me/28
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY
 
@@ -10,8 +12,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiO
     "submission" : "Hello World Contribution to Github"
 }
 ###
-GET http://localhost:3000/api/submit/me/22
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY
+GET http://localhost:3000/api/submit/me/28
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImRhdGUiOjE2MjYyNjk5Nzc3NDMsImlhdCI6MTYyNjI2OTk3N30.ANpD2ipM5M-oup9cSiMQ-KnH0HS45eLzVl26e88EQb0
 ###
-DELETE http://localhost:3000/api/submit/me/22
+DELETE http://localhost:3000/api/submit/me/26
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY
