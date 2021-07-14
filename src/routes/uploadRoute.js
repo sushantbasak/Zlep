@@ -30,6 +30,6 @@ router.patch('/me/:id', auth, validUpload, updateUpload);
 
 // =========================== Retrieve all submitted Documents/Assignment ===========================
 
-router.get('/me/:id/:op?', auth, hostCheck, getAllSubmissions);
+router.get('/me/:uploadId/:op?', auth, hostCheck, getAllSubmissions);
 
 module.exports = router;
