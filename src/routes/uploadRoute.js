@@ -1,7 +1,7 @@
 const express = require('express');
 const { validUpload } = require('../helpers/validation');
-const { auth } = require('../middileware/auth');
-const { hostCheck } = require('../middileware/host');
+const { auth } = require('../middleware/auth');
+const { hostCheck } = require('../middleware/host');
 
 const router = express.Router();
 

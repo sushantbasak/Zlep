@@ -1,8 +1,8 @@
 const pool = require('../db/pool');
 
-const { generateAuthToken } = require('../helpers/auth');
+const { generateAuthToken } = require('../middleware/auth');
 
-const { generateHash } = require('../helpers/hash');
+const { generateHash } = require('../middleware/hash');
 
 const { successMessage, errorMessage, status } = require('../helpers/status');
 

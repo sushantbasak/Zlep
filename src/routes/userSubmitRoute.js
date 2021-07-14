@@ -1,8 +1,8 @@
 const express = require('express');
 
-const { auth } = require('../middileware/auth');
+const { auth } = require('../middleware/auth');
 
-const { hostCheck } = require('../middileware/host');
+const { hostCheck } = require('../middleware/host');
 
 const router = express.Router();
 
