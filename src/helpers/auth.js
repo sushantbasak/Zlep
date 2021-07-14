@@ -6,7 +6,7 @@ const { status, errorMessage } = require('./status');
 dotenv.config();
 
 const generateAuthToken = async (user) => {
-  const token = await jwt.sign({ id: user.user_id, date: new Date().getTime() }, process.env.JWT_SECRET);
+  const token = await jwt.sign({ id: user, date: new Date().getTime() }, process.env.JWT_SECRET);
 
   return token;
 };
