@@ -1,3 +1,17 @@
 GET http://localhost:3000/api/health
 ###
 GET http://localhost:3000/api/submit/me
+### 
+POST http://localhost:3000/api/submit/me/22
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY
+
+{
+    "submission" : "Hello World Contribution to Github"
+}
+###
+GET http://localhost:3000/api/submit/me/22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY
+###
+DELETE http://localhost:3000/api/submit/me/22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY

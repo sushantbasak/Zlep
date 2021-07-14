@@ -5,12 +5,12 @@ content-type: application/json
 
 {
     "name": "Sushant",
-    "email" : "sushant@gmail.com",
+    "email" : "sushasnt@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###
 GET http://localhost:3000/api/user/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgsImRhdGUiOjE2MjUxNDI5MDQyMjAsImlhdCI6MTYyNTE0MjkwNH0.ohGvRcJhKiCt6ySyzQwYlU5bG500TFEpxh3O7xvP5lg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAsImRhdGUiOjE2MjYyNDc4MTYzNTQsImlhdCI6MTYyNjI0NzgxNn0.C3LFmsj2p-u4eDEEX52dO5jgwHW-vbETJjNjW73V-hY
 ###
 DELETE http://localhost:3000/api/user/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDYsImRhdGUiOjE2MjQ5OTA1NTg3MTksImlhdCI6MTYyNDk5MDU1OH0.l2yDpAxLAAQkapgb-vj7iyNQEbpl6Wy5qN2aw-pH6fY
@@ -29,7 +29,7 @@ GET http://localhost:3000/api/user/login
 content-type: application/json
 
 {
-    "email" : "sushant@gmail.com",
+    "email" : "sushasnt@gmail.com",
     "password" : "s15dD@/.ssS"
 }
 ###

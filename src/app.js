@@ -5,7 +5,7 @@ const app = express();
 
 const userRoute = require('./routes/userRoute');
 const uploadRoute = require('./routes/uploadRoute');
-const submitRoute = require('./routes/submitRoute');
+const submitRoute = require('./routes/userSubmitRoute');
 
 app.use(express.json());
 dotenv.config();
