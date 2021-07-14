@@ -1,5 +1,5 @@
 const pool = require('../db/pool');
-const { errorMessage, status } = require('./status');
+const { errorMessage, status } = require('../helpers/status');
 
 const hostCheck = async (req, res, next) => {
   const { user_id: userId } = req.user;

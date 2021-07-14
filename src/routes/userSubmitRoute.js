@@ -1,8 +1,8 @@
 const express = require('express');
 
-const { auth } = require('../helpers/auth');
+const { auth } = require('../middileware/auth');
 
-const { hostCheck } = require('../helpers/host');
+const { hostCheck } = require('../middileware/host');
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.get('/me/:uploadId', auth, getSubmit);
 
 router.delete('/me/:uploadId', auth, deleteSubmit);
 
-// =========================== Host Access to give review on submitted assignment by the students ===========================
+//= ============= Host/Teacher/Interviewer Access to give review on submitted assignment by the students/Interviewee/ ===========
 
 router.patch('/:submitId/:op?', auth, hostCheck, giveReview);
 

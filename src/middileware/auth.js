@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const pool = require('../db/pool');
-const { status, errorMessage } = require('./status');
+const { status, errorMessage } = require('../helpers/status');
 
 dotenv.config();
 

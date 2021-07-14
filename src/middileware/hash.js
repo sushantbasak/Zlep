@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 const pool = require('../db/pool');
 
-const { successMessage, errorMessage, status } = require('./status');
+const { successMessage, errorMessage, status } = require('../helpers/status');
 
 dotenv.config();
 
