@@ -17,11 +17,7 @@ const auth = async (req, res, next) => {
 
     const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log(decoded, 'Hello');
-
     const finduser = await pool.query('select * from tokens where user_id = $1 AND token = $2', [decoded.id, token]);
-
-    console.log(finduser);
 
     if (!finduser.rows.length === 0) throw new Error();
 
