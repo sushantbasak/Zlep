@@ -1,0 +1,8 @@
+###
+GET http://localhost:3000/api/health
+###
+PATCH http://localhost:3000/api/admin/60
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImRhdGUiOjE2MjYzNDcyMTgyNzMsImlhdCI6MTYyNjM0NzIxOH0.XmxIUfxHvXQlGUUGieqvt6I8npz9EN3apE_PqORzTao
+###
+DELETE  http://localhost:3000/api/admin/60
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImRhdGUiOjE2MjYzNDcyMTgyNzMsImlhdCI6MTYyNjM0NzIxOH0.XmxIUfxHvXQlGUUGieqvt6I8npz9EN3apE_PqORzTao
