@@ -6,6 +6,7 @@ const app = express();
 const userRoute = require('./routes/userRoute');
 const uploadRoute = require('./routes/uploadRoute');
 const submitRoute = require('./routes/userSubmitRoute');
+const adminRoute = require('./routes/adminRoute');
 
 app.use(express.json());
 dotenv.config();
@@ -28,6 +29,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/user', userRoute);
 app.use('/api/upload', uploadRoute);
 app.use('/api/submit', submitRoute);
+app.use('/api/admin', adminRoute);
 app.use(end);
 
 app.listen(PORT, () =>
